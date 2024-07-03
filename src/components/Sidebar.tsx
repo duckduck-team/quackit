@@ -5,7 +5,7 @@ import { AboutBar } from "@/components/AboutBar";
 
 export function Sidebar() {
   return (
-    <aside className="flex flex-col grow w-[23rem]">
+    <aside className="flex flex-col w-[23rem]">
       <div className="flex flex-col gap-2.5">
         <AccountBar />
         <Separator className="h-0.5 w-[23rem]" />
