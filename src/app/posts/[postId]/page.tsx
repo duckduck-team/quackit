@@ -1,5 +1,5 @@
-import { PostPage } from "@/pages/posts/ui/post/PostPage";
+import { SinglePostPage } from "@/pages/posts/ui/SinglePostPage";
 
 export default function Post() {
-  return <PostPage />;
+  return <SinglePostPage />;
 }
