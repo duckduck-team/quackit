@@ -23,14 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="flex h-[4.5rem] px-8 py-4 justify-between items-center">
+        <header className="flex h-header px-8 py-4 justify-between items-center">
           <span className="text-2xl font-semibold">Quackit</span>
           <Input placeholder="Search Quackit..." className="w-[52rem]" />
           <Button>
             <LogInIcon className="mr-2 h-4 w-4" /> Login
           </Button>
         </header>
-        <main className="flex justify-between px-8 pb-4">
+        <main className="flex justify-between px-8 pb-4 h-screen-wo-header">
           <Sidebar />
           {children}
           <div className="flex flex-col bg-[#F9F9F9] w-[23rem] gap-2.5 p-4 rounded-sm">

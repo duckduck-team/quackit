@@ -33,6 +33,9 @@
       --ring: 222.2 84% 4.9%;
 
       --radius: 0.5rem;
+
+      --height-header: 4.5rem;
+      --height-wo-header: calc(100vh - var(--height-header) - 1px);
     }
 
     .dark {
