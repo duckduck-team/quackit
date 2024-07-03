@@ -20,6 +20,8 @@ const config = {
     extend: {
       spacing: {
         header: "var(--height-header)",
+        sidebar: "23rem",
+        content: "52rem",
         "screen-wo-header": "var(--height-wo-header)",
       },
       colors: {

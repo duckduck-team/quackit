@@ -1,11 +1,11 @@
-import { Separator } from "@/components/ui/separator";
-import { AccountBar } from "@/components/AccountBar";
-import { TopicsBar } from "@/components/TopicsBar";
-import { AboutBar } from "@/components/AboutBar";
+import { Separator } from "@/shared/ui/separator";
+import { AccountBar } from "@/shared/ui/layout/sidebar/bars/AccountBar";
+import { TopicsBar } from "@/shared/ui/layout/sidebar/bars/TopicsBar";
+import { AboutBar } from "@/shared/ui/layout/sidebar/bars/AboutBar";
 
 export function Sidebar() {
   return (
-    <aside className="flex flex-col justify-between w-[23rem]">
+    <aside className="flex flex-col justify-between w-sidebar">
       <div className="flex flex-col gap-2.5">
         <AccountBar />
         <Separator className="h-0.5 w-[23rem]" />
