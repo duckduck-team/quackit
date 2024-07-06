@@ -8,21 +8,19 @@ interface VoteButtonProps {
 export function VoteButton({ votes_count }: VoteButtonProps) {
   return (
     <PostButton className="w-fit flex bg-secondary font-medium text-sm text-primary/75 rounded-md">
-      <button
-        type="button"
+      <div
         title="Vote up"
         className="rounded-md w-fit p-2 h-full bg-secondary text-primary/75 hover:text-primary"
       >
         <ChevronsUpIcon strokeWidth={3} size={20} />
-      </button>
+      </div>
       <span className="py-2">{votes_count === 0 ? "Vote" : votes_count}</span>
-      <button
-        type="button"
+      <div
         title="Vote down"
         className="rounded-md w-fit p-2 h-full bg-secondary text-primary/75 hover:text-primary"
       >
         <ChevronsDownIcon strokeWidth={3} size={20} />
-      </button>
+      </div>
     </PostButton>
   );
 }
