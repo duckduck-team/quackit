@@ -1,4 +1,4 @@
-import { PostButton } from "@/pages/posts/ui/post/PostButton";
+import { PostButton } from "@/pages/posts/ui/post/buttons/PostButton";
 import { ChevronsDownIcon, ChevronsUpIcon } from "lucide-react";
 import { Button } from "@/shared/ui/button";
 

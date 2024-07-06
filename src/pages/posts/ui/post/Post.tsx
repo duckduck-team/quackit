@@ -2,10 +2,10 @@ import { MoreHorizontalIcon } from "lucide-react";
 import { Card, CardContent, CardTitle } from "@/shared/ui/card";
 import { PostUser } from "@/pages/posts/ui/post/PostUser";
 import { PostContent } from "@/pages/posts/ui/post/PostContent";
-import { VoteButton } from "@/pages/posts/ui/post/VoteButton";
-import { CommentButton } from "@/pages/posts/ui/post/CommentButton";
-import { ShareButton } from "@/pages/posts/ui/post/ShareButton";
-import { ReportButton } from "@/pages/posts/ui/post/ReportButton";
+import { VoteButton } from "@/pages/posts/ui/post/buttons/VoteButton";
+import { CommentButton } from "@/pages/posts/ui/post/buttons/CommentButton";
+import { ShareButton } from "@/pages/posts/ui/post/buttons/ShareButton";
+import { ReportButton } from "@/pages/posts/ui/post/buttons/ReportButton";
 
 interface PostProps {
   title: string;
