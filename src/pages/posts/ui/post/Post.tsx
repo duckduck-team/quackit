@@ -2,6 +2,7 @@ import { MoreHorizontalIcon } from "lucide-react";
 import { Card, CardContent, CardTitle } from "@/shared/ui/card";
 import { PostUser } from "@/pages/posts/ui/post/PostUser";
 import { PostContent } from "@/pages/posts/ui/post/PostContent";
+import { VoteButton } from "@/pages/posts/ui/post/VoteButton";
 
 interface PostProps {
   title: string;
@@ -32,6 +33,7 @@ export function Post({
       <CardContent className="flex flex-col w-full gap-4 p-0">
         <PostContent title={title} content={content} post_id={post_id} />
       </CardContent>
+      <VoteButton votes_count={votes_count} />
     </Card>
   );
 }
