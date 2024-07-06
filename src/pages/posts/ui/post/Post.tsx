@@ -6,14 +6,16 @@ import { VoteButton } from "@/pages/posts/ui/post/buttons/VoteButton";
 import { CommentButton } from "@/pages/posts/ui/post/buttons/CommentButton";
 import { ShareButton } from "@/pages/posts/ui/post/buttons/ShareButton";
 import { ReportButton } from "@/pages/posts/ui/post/buttons/ReportButton";
+import React from "react";
 
-interface PostProps {
+export interface PostProps {
   title: string;
   content: string;
   post_id: number;
   user_id: number;
   votes_count: number;
   published_at: string;
+  children?: React.ReactNode;
 }
 export function Post({
   title,
@@ -22,6 +24,7 @@ export function Post({
   user_id,
   votes_count,
   published_at,
+  children,
 }: PostProps) {
   return (
     <Card className="flex flex-col w-full bg-background p-4 gap-4">
@@ -42,6 +45,7 @@ export function Post({
         <ShareButton />
         <ReportButton />
       </div>
+      {children ? children : null}
     </Card>
   );
 }
