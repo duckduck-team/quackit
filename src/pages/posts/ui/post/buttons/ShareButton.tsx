@@ -1,4 +1,4 @@
-import { PostButton } from "@/pages/posts/ui/post/PostButton";
+import { PostButton } from "@/pages/posts/ui/post/buttons/PostButton";
 import { Share2Icon } from "lucide-react";
 
 export function ShareButton() {
