@@ -3,6 +3,9 @@ import { Card, CardContent, CardTitle } from "@/shared/ui/card";
 import { PostUser } from "@/pages/posts/ui/post/PostUser";
 import { PostContent } from "@/pages/posts/ui/post/PostContent";
 import { VoteButton } from "@/pages/posts/ui/post/VoteButton";
+import { CommentButton } from "@/pages/posts/ui/post/CommentButton";
+import { ShareButton } from "@/pages/posts/ui/post/ShareButton";
+import { ReportButton } from "@/pages/posts/ui/post/ReportButton";
 
 interface PostProps {
   title: string;
@@ -33,7 +36,12 @@ export function Post({
       <CardContent className="flex flex-col w-full gap-4 p-0">
         <PostContent title={title} content={content} post_id={post_id} />
       </CardContent>
-      <VoteButton votes_count={votes_count} />
+      <div className="flex gap-4">
+        <VoteButton votes_count={votes_count} />
+        <CommentButton />
+        <ShareButton />
+        <ReportButton />
+      </div>
     </Card>
   );
 }
