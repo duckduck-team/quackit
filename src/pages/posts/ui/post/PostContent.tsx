@@ -7,7 +7,6 @@ export function PostContent({ title, content, post_id }: PostContentProps) {
   function parseContent(content: string) {
     if (content) {
       let contentSep = content.split("\n");
-      console.log(contentSep);
       return contentSep.map((cont, index) => (
         <p key={`${post_id}-${index}`}>{cont ? cont : <br />}</p>
       ));
