@@ -8,7 +8,7 @@ export function PostWithComments(props: PostProps) {
   return (
     <Post {...props}>
       <div className="flex flex-col gap-4 p-4 border rounded-md">
-        <Textarea placeholder={text} value={text} />
+        <Textarea placeholder={text} />
         <Button className="w-fit">Publish comment</Button>
       </div>
     </Post>
