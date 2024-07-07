@@ -43,7 +43,7 @@ export function PostsPage() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  
+
   return (
     <div className="flex flex-col bg-secondary p-4 w-content gap-4">
       {posts.map((post: PostInDB) => (
