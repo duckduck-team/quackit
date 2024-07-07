@@ -1,21 +1,37 @@
+"use client";
 import { PostButton } from "@/pages/posts/ui/post/buttons/PostButton";
 import { ChevronsDownIcon, ChevronsUpIcon } from "lucide-react";
-import { Button } from "@/shared/ui/button";
+import { useState } from "react";
+import { votePost } from "@/pages/posts/lib/posts";
 
 interface VoteButtonProps {
+  post_id: number;
   votes_count: number;
 }
-export function VoteButton({ votes_count }: VoteButtonProps) {
+
+export function VoteButton({ post_id, votes_count }: VoteButtonProps) {
+  const [votes, setVotes] = useState(votes_count);
+
+  async function voteUp() {
+    const data = await votePost(post_id);
+    if (data) {
+      return setVotes(data.votes_count);
+    } else {
+      return;
+    }
+  }
   return (
     <PostButton className="w-fit flex bg-secondary font-medium text-sm text-primary/75 rounded-md">
       <div
+        onClick={voteUp}
         title="Vote up"
         className="rounded-md w-fit p-2 h-full bg-secondary text-primary/75 hover:text-primary"
       >
         <ChevronsUpIcon strokeWidth={3} size={20} />
       </div>
-      <span className="py-2">{votes_count === 0 ? "Vote" : votes_count}</span>
+      <span className="py-2">{votes === 0 ? "Vote" : votes}</span>
       <div
+        onClick={voteUp}
         title="Vote down"
         className="rounded-md w-fit p-2 h-full bg-secondary text-primary/75 hover:text-primary"
       >

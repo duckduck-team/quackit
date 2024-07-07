@@ -17,6 +17,7 @@ export interface PostProps {
   published_at: string;
   children?: React.ReactNode;
 }
+
 export function Post({
   title,
   content,
@@ -40,7 +41,7 @@ export function Post({
         <PostContent title={title} content={content} post_id={post_id} />
       </CardContent>
       <div className="flex gap-4">
-        <VoteButton votes_count={votes_count} />
+        <VoteButton post_id={post_id} votes_count={votes_count} />
         <CommentButton />
         <ShareButton />
         <ReportButton />
