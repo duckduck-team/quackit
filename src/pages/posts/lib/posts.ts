@@ -8,10 +8,16 @@ export interface PostInDB extends Response {
   detail?: string;
 }
 
+export interface AvailablePosts<PostInDB> {
+  [posts: string]: PostInDB[];
+}
+
 interface Token extends Response {
   access_token: string;
   token_type: string;
 }
+
+
 export async function fetchPost(post_id: number) {
   return await fetch(
     `${process.env.NEXT_PUBLIC_API_HOST}/unauthorized/post/${post_id}`,
@@ -26,6 +32,16 @@ export async function fetchPost(post_id: number) {
       console.log("Error occurred while fetching the post", e);
       return null;
     });
+}
+
+export async function fetchPosts(): Promise<AvailablePosts<PostInDB>> {
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_API_HOST}/unauthorized/postlist_all`,
+    { cache: "no-store" },
+  )
+    .then((r) => {
+      return r.json();
+    })
 }
 
 async function dummyAuth() {
