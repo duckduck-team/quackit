@@ -50,8 +50,6 @@ export function PostsPage() {
 
         if (tags.length > 0) {
           setTags(tags)
-        } else {
-          setError("No posts")
         }
 
       } finally {
