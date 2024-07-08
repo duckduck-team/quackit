@@ -21,7 +21,7 @@ export function Layout({ children }: LayoutProps) {
             <LogInIcon className="mr-2 h-4 w-4" /> Login
           </Button>
         </header>
-        <main className="flex justify-between px-8 pb-4 h-screen-wo-header">
+        <main className="flex justify-between px-8 pb-4">
           <Sidebar />
           {children}
           <PopularAuthors />
