@@ -11,18 +11,6 @@ export function PostsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
-
   useEffect(() => {
     async function getPosts() {
       try {
@@ -59,6 +47,22 @@ export function PostsPage() {
     getTags();
   }, []);
 
+  const formatDate = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  const filterPosts = (new_posts: PostInDB[]) => {
+    setPosts(new_posts)
+  }
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -67,6 +71,7 @@ export function PostsPage() {
       <div className="flex flex-wrap gap-2">
         {tags.map((tag: TagInDB) => (
           <Tag 
+            callback={filterPosts}
             tag={tag.tag}
           />
         ))}
