@@ -1,11 +1,13 @@
 'use client'
 import { Post } from "@/pages/posts/ui/post/Post";
 import { useEffect, useState } from "react";
-import { fetchPosts, PostInDB, AvailablePosts } from "../lib/posts";
+import { fetchPosts, PostInDB, AvailablePosts, fetchTags, TagInDB, AvailableTags } from "../lib/posts";
+import Tag from "./tag/Tag";
 
 
 export function PostsPage() {
   const [posts, setPosts] = useState<PostInDB[]>([]);
+  const [tags, setTags] = useState<TagInDB[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -37,8 +39,26 @@ export function PostsPage() {
         setLoading(false);
       }
     }
-
     getPosts();
+  }, []);
+
+  useEffect(() => {
+    async function getTags() {
+      try {
+        const tagsData: AvailableTags<TagInDB> = await fetchTags();
+        const tags: TagInDB[] = tagsData['tags']
+
+        if (tags.length > 0) {
+          setTags(tags)
+        } else {
+          setError("No posts")
+        }
+
+      } finally {
+        setLoading(false);
+      }
+    }
+    getTags();
   }, []);
 
   if (loading) return <div>Loading...</div>;
@@ -46,6 +66,13 @@ export function PostsPage() {
 
   return (
     <div className="flex flex-col bg-secondary p-4 w-content gap-4">
+      <div className="flex flex-wrap gap-2">
+        {tags.map((tag: TagInDB) => (
+          <Tag 
+            tag={tag.tag}
+          />
+        ))}
+      </div>
       {posts.map((post: PostInDB) => (
         <Post
           key={post.post_id}

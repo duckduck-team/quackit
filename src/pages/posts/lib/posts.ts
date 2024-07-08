@@ -8,8 +8,17 @@ export interface PostInDB extends Response {
   detail?: string;
 }
 
+export interface TagInDB extends Response {
+  tag_id: number;
+  tag: string;
+}
+
 export interface AvailablePosts<PostInDB> {
   [posts: string]: PostInDB[];
+}
+
+export interface AvailableTags<TagInDB> {
+  [tags: string]: TagInDB[];
 }
 
 interface Token extends Response {
@@ -37,6 +46,16 @@ export async function fetchPost(post_id: number) {
 export async function fetchPosts(): Promise<AvailablePosts<PostInDB>> {
   return await fetch(
     `${process.env.NEXT_PUBLIC_API_HOST}/unauthorized/postlist_all`,
+    { cache: "no-store" },
+  )
+    .then((r) => {
+      return r.json();
+    })
+}
+
+export async function fetchTags(): Promise<AvailableTags<TagInDB>> {
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_API_HOST}/unauthorized/tags_all`,
     { cache: "no-store" },
   )
     .then((r) => {
