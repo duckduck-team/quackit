@@ -6,6 +6,7 @@ import { VoteButton } from "@/pages/posts/ui/post/buttons/VoteButton";
 import { CommentButton } from "@/pages/posts/ui/post/buttons/CommentButton";
 import { ShareButton } from "@/pages/posts/ui/post/buttons/ShareButton";
 import { ReportButton } from "@/pages/posts/ui/post/buttons/ReportButton";
+import Link from 'next/link'
 import React from "react";
 
 export interface PostProps {
@@ -42,7 +43,9 @@ export function Post({
       </CardContent>
       <div className="flex gap-4">
         <VoteButton post_id={post_id} votes_count={votes_count} />
-        <CommentButton />
+        <Link href={`/posts/${post_id}`}>
+          <CommentButton />
+        </Link>
         <ShareButton />
         <ReportButton />
       </div>
