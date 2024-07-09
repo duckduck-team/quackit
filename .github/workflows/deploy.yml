@@ -1,0 +1,29 @@
+name: Deploy to testing server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  pre-deploy:
+    name: Deploy to testing server
+    runs-on: self-hosted
+    environment:
+      name: staging
+      url: https://quackit.dminc.ru
+    steps:
+      - name: Run via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          command_timeout: 200m
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script_stop: true
+          script: |
+            cd ${{ secrets.SSH_DEPLOY_DIR }}
+            git checkout ${{ github.ref_name }}
+            git pull
+            docker compose build --pull
+            docker compose up -d
