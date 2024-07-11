@@ -12,9 +12,6 @@ import { ToggleGroupCastom } from "@/pages/createPost/ui/createPost/ToggleGroupC
 import { Tabs, TabsList, TabsTrigger } from "@/shared/ui/tabs";
 
 export function CreatePostPage() {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
-
   return (
     <div className="flex flex-col bg-secondary p-4 w-content gap-4">
       <Card className="flex flex-col w-full bg-background p-4 gap-4">
@@ -26,7 +23,7 @@ export function CreatePostPage() {
 
         <div className="flex flex-row gap-4">
           <Tabs defaultValue="edit" className="bg-gray-200 rounded-sm">
-            <TabsList className="grid w-full grid-cols-2 border border-gray-200 rounded-sm bg-white">
+            <TabsList className="grid w-full grid-cols-2 border border-gray-200 rounded-sm">
               <TabsTrigger
                 value="edit"
                 className="focus:outline-none hover:bg-gray-200 focus:bg-gray-200"
