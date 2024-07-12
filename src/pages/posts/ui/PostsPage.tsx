@@ -1,9 +1,15 @@
-'use client'
+"use client";
 import { Post } from "@/pages/posts/ui/post/Post";
 import { useEffect, useState } from "react";
-import { fetchPosts, PostInDB, AvailablePosts, fetchTags, TagInDB, AvailableTags } from "../lib/posts";
+import {
+  fetchPosts,
+  PostInDB,
+  AvailablePosts,
+  fetchTags,
+  TagInDB,
+  AvailableTags,
+} from "../lib/posts";
 import Tag from "./tag/Tag";
-
 
 export function PostsPage() {
   const [posts, setPosts] = useState<PostInDB[]>([]);
@@ -15,14 +21,13 @@ export function PostsPage() {
     async function getPosts() {
       try {
         const postsData: AvailablePosts<PostInDB> = await fetchPosts();
-        const posts: PostInDB[] = postsData['posts']
+        const posts: PostInDB[] = postsData["posts"];
 
         if (posts.length > 0) {
-          setPosts(posts)
+          setPosts(posts);
         } else {
-          setError("No posts")
+          setError("No posts");
         }
-
       } finally {
         setLoading(false);
       }
@@ -34,12 +39,11 @@ export function PostsPage() {
     async function getTags() {
       try {
         const tagsData: AvailableTags<TagInDB> = await fetchTags();
-        const tags: TagInDB[] = tagsData['tags']
+        const tags: TagInDB[] = tagsData["tags"];
 
         if (tags.length > 0) {
-          setTags(tags)
+          setTags(tags);
         }
-
       } finally {
         setLoading(false);
       }
@@ -49,19 +53,19 @@ export function PostsPage() {
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
     };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
   const filterPosts = (new_posts: PostInDB[]) => {
-    setPosts(new_posts)
-  }
+    setPosts(new_posts);
+  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -70,10 +74,7 @@ export function PostsPage() {
     <div className="flex flex-col bg-secondary p-4 w-content gap-4">
       <div className="flex flex-wrap gap-2">
         {tags.map((tag: TagInDB) => (
-          <Tag 
-            callback={filterPosts}
-            tag={tag.tag}
-          />
+          <Tag key={`tag-${tag}`} callback={filterPosts} tag={tag.tag} />
         ))}
       </div>
       {posts.map((post: PostInDB) => (
