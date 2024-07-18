@@ -8,10 +8,24 @@ import { useState } from "react";
 import { Button } from "@/shared/ui/button";
 import { TextareaWithText } from "@/pages/createPost/ui/createPost/TextareaWithText";
 import { ChooseCategory } from "@/pages/createPost/ui/createPost/ChooseCategory";
-import { ToggleGroupCastom } from "@/pages/createPost/ui/createPost/ToggleGroupCastom";
-import { Tabs, TabsList, TabsTrigger } from "@/shared/ui/tabs";
+import { ToggleGroupCustom } from "@/pages/createPost/ui/createPost/ToggleGroupCustom";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/shared/ui/tabs";
 
 export function CreatePostPage() {
+  const [isEditMode, setIsEditMode] = useState(true);
+  const [text, setText] = useState("");
+  const [fileName, setFileName] = useState("");
+
+  const handleUploadClick = () => {
+    document.getElementById("picture")?.click();
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setFileName(event.target.files[0].name);
+    }
+  };
+
   return (
     <div className="flex flex-col bg-secondary p-4 w-content gap-4">
       <Card className="flex flex-col w-full bg-background p-4 gap-4">
@@ -27,29 +41,49 @@ export function CreatePostPage() {
               <TabsTrigger
                 value="edit"
                 className="focus:outline-none hover:bg-gray-200 focus:bg-gray-200"
+                onClick={() => setIsEditMode(true)}
               >
                 Edit
               </TabsTrigger>
               <TabsTrigger
                 value="preview"
                 className="focus:outline-none hover:bg-gray-200 focus:bg-gray-200"
+                onClick={() => setIsEditMode(false)}
               >
                 Preview
               </TabsTrigger>
             </TabsList>
           </Tabs>
-          <ToggleGroupCastom />
+          <ToggleGroupCustom setText={setText} />
         </div>
 
-        <TextareaWithText />
+        <TextareaWithText
+          text={text}
+          setText={setText}
+          isEditMode={isEditMode}
+        />
 
-        <Input id="picture" type="file" />
+        <div className="flex flex-row gap-4 items-center">
+          <Button
+            type="button"
+            className="px-2 py-1 text-sm"
+            onClick={handleUploadClick}
+          >
+            Upload photo
+          </Button>
+          <Input
+            id="picture"
+            type="file"
+            className="hidden"
+            onChange={handleFileChange}
+          />
+          {fileName && (
+            <span className="text-sm text-muted-foreground">{fileName}</span>
+          )}
+        </div>
 
         <div className="flex flex-row gap-4 items-center">
           <Button type="submit">Submit</Button>
-          <p className="text-sm text-muted-foreground">
-            Posts should follow Terms of Service.
-          </p>
         </div>
       </Card>
     </div>
