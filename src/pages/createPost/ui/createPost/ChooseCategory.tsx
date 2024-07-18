@@ -17,24 +17,24 @@ import { CommandList } from "cmdk";
 
 const frameworks = [
   {
-    value: "next.js",
-    label: "Next.js",
+    value: "IT",
+    label: "IT",
   },
   {
-    value: "sveltekit",
-    label: "SvelteKit",
+    value: "hobby",
+    label: "Hobby",
   },
   {
-    value: "nuxt.js",
-    label: "Nuxt.js",
+    value: "news",
+    label: "News",
   },
   {
-    value: "remix",
-    label: "Remix",
+    value: "travelling",
+    label: "Travelling",
   },
   {
-    value: "astro",
-    label: "Astro",
+    value: "overview",
+    label: "Overview",
   },
 ];
 
