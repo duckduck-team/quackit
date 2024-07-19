@@ -26,7 +26,6 @@ interface Token extends Response {
   token_type: string;
 }
 
-
 export async function fetchPost(post_id: number) {
   return await fetch(
     `${process.env.NEXT_PUBLIC_API_HOST}/unauthorized/post/${post_id}`,
@@ -47,30 +46,29 @@ export async function fetchPosts(): Promise<AvailablePosts<PostInDB>> {
   return await fetch(
     `${process.env.NEXT_PUBLIC_API_HOST}/unauthorized/postlist_all`,
     { cache: "no-store" },
-  )
-    .then((r) => {
-      return r.json();
-    })
+  ).then((r) => {
+    return r.json();
+  });
 }
 
 export async function fetchTags(): Promise<AvailableTags<TagInDB>> {
   return await fetch(
     `${process.env.NEXT_PUBLIC_API_HOST}/unauthorized/tags_all`,
     { cache: "no-store" },
-  )
-    .then((r) => {
-      return r.json();
-    })
+  ).then((r) => {
+    return r.json();
+  });
 }
 
-export async function fetchPostsByTag(tag_title: string): Promise<AvailablePosts<PostInDB>> {
+export async function fetchPostsByTag(
+  tag_title: string,
+): Promise<AvailablePosts<PostInDB>> {
   return await fetch(
     `${process.env.NEXT_PUBLIC_API_HOST}/unauthorized/tag/${tag_title}`,
     { cache: "no-store" },
-  )
-    .then((r) => {
-      return r.json();
-    })
+  ).then((r) => {
+    return r.json();
+  });
 }
 
 async function dummyAuth() {
