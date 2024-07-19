@@ -130,7 +130,7 @@ export function CreatePostPage({
           <Button
             type="button"
             variant={"outline"}
-            className="gap-2 text-sm"
+            className="gap-2 text-sm w-full sm:w-fit"
             onClick={handleUploadClick}
             disabled
           >
