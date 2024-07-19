@@ -2,7 +2,7 @@ import { UserCard } from "@/shared/ui/layout/popular-authors/UserCard";
 
 export function PopularAuthors() {
   return (
-    <div className="flex flex-col bg-secondary w-sidebar gap-2.5 p-4 rounded-sm">
+    <div className="hidden sm:flex flex-col bg-secondary w-sidebar gap-2.5 p-4 rounded-sm">
       <span className="text-xl font-semibold">Popular authors</span>
       <UserCard
         avatarUrl={"https://github.com/danmaninc.png"}

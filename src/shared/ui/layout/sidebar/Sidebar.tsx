@@ -5,7 +5,7 @@ import { AboutBar } from "@/shared/ui/layout/sidebar/bars/AboutBar";
 
 export function Sidebar() {
   return (
-    <aside className="flex flex-col justify-between w-sidebar h-screen-wo-header">
+    <aside className="hidden sm:flex flex-col justify-between w-sidebar h-screen-wo-header">
       <div className="flex flex-col gap-2.5">
         <AccountBar />
         <Separator className="h-0.5 w-[23rem]" />
