@@ -31,7 +31,7 @@ export function VoteButton({ post_id, votes_count }: VoteButtonProps) {
   }
 
   return (
-    <PostButton className="w-fit flex bg-secondary font-medium text-sm text-primary/75 rounded-md">
+    <PostButton className="w-32 sm:w-fit flex bg-secondary justify-between font-medium text-sm text-primary/75 rounded-md">
       <div
         onClick={voteUp}
         title="Vote up"
