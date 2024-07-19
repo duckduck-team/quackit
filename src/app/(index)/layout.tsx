@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../globals.css";
 import { Layout } from "@/shared/ui/layout/Layout";
 
 export default function RootLayout({
