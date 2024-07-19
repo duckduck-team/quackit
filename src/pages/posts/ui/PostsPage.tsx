@@ -10,8 +10,9 @@ import {
   AvailableTags,
 } from "../lib/posts";
 import Tag from "./tag/Tag";
+import { CreatePostPage } from "@/pages/createPost/ui/CreatePostPage";
 
-export function PostsPage() {
+export function PostsPage({ user_id }: { user_id: number }) {
   const [posts, setPosts] = useState<PostInDB[]>([]);
   const [tags, setTags] = useState<TagInDB[]>([]);
   const [loading, setLoading] = useState(true);
@@ -60,6 +61,9 @@ export function PostsPage() {
 
   return (
     <div className="flex flex-col bg-secondary p-4 w-content gap-4">
+      {user_id ? (
+        <CreatePostPage className="p-0 w-full" user_id={user_id} />
+      ) : null}
       <div className="flex flex-wrap gap-2">
         {tags.map((tag: TagInDB) => (
           <Tag key={`tag-${tag}`} callback={filterPosts} tag={tag.tag} />
