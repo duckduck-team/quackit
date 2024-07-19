@@ -51,18 +51,6 @@ export function PostsPage() {
     getTags();
   }, []);
 
-  const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
-
   const filterPosts = (new_posts: PostInDB[]) => {
     setPosts(new_posts);
   };
@@ -82,7 +70,7 @@ export function PostsPage() {
           key={post.post_id}
           content={post.content}
           post_id={post.post_id}
-          published_at={formatDate(post.published_at)}
+          published_at={post.published_at}
           title={post.title}
           user_id={post.user_id}
           votes_count={post.votes_count}
