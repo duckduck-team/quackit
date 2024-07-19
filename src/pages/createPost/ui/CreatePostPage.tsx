@@ -12,17 +12,22 @@ import { ToggleGroupCustom } from "@/pages/createPost/ui/createPost/ToggleGroupC
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/shared/ui/tabs";
 import { fetchUser } from "@/pages/posts/lib/users";
 import { redirect } from "next/navigation";
-import { Image } from "lucide-react";
+import { Image, Loader2 } from "lucide-react";
+import { createPost } from "@/pages/createPost/lib/createPost";
+import { useRouter } from "next/navigation";
 
 export function CreatePostPage({ user_id }: { user_id: number }) {
   const [isEditMode, setIsEditMode] = useState(true);
+  const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [fileName, setFileName] = useState("");
+  const [error, setError] = useState("");
   const [postUser, setPostUser] = useState({
     username: "",
     user_id: -1,
   });
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   const handleUploadClick = () => {
     document.getElementById("picture")?.click();
@@ -41,19 +46,36 @@ export function CreatePostPage({ user_id }: { user_id: number }) {
         setPostUser(user);
         setLoading(false);
       } else {
-        redirect("/login");
+        router.push("/login");
         setLoading(false);
       }
     }
     getUser(user_id);
   }, []);
 
+  async function handleSubmit() {
+    setLoading(true);
+    const result = await createPost(title, text, "");
+    console.log(result);
+    if (result) router.push("/posts");
+    else {
+      setError(error);
+      setLoading(false);
+    }
+  }
+
   return (
     <div className="flex flex-col bg-secondary p-4 w-content gap-4">
       <Card className="flex flex-col w-full bg-background p-4 gap-4">
         <UserData user_id={postUser.user_id} username={postUser.username} />
         <div className="flex flex-row gap-4 justify-between">
-          <Input id="title" placeholder="Post title..." className="w-full" />
+          <Input
+            id="title"
+            placeholder="Post title..."
+            className="w-full"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
           <ChooseCategory />
         </div>
 
@@ -106,7 +128,17 @@ export function CreatePostPage({ user_id }: { user_id: number }) {
         </div>
 
         <div className="flex flex-row gap-4 items-center">
-          <Button type="submit">Submit</Button>
+          {loading ? (
+            <Button type="submit" disabled>
+              {" "}
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submit
+            </Button>
+          ) : (
+            <Button onClick={handleSubmit} type="submit">
+              Submit
+            </Button>
+          )}
+          {error ? <p>{error}</p> : null}
         </div>
       </Card>
     </div>
