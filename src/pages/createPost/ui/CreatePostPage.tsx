@@ -81,13 +81,13 @@ export function CreatePostPage({
   ) : (
     <div
       className={cn(
-        "flex flex-col bg-secondary p-4 w-content gap-4",
+        "flex flex-col bg-secondary p-4 sm:w-content gap-4",
         className,
       )}
     >
       <Card className="flex flex-col w-full bg-background p-4 gap-4">
         <UserData user_id={postUser.user_id} username={postUser.username} />
-        <div className="flex flex-row gap-4 justify-between">
+        <div className="flex flex-col sm:flex-row gap-4 justify-between">
           <Input
             id="title"
             placeholder="Post title..."
@@ -98,7 +98,7 @@ export function CreatePostPage({
           <ChooseCategory />
         </div>
 
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <Tabs defaultValue="edit" className="bg-gray-200 rounded-sm">
             <TabsList className="grid w-full grid-cols-2 border border-gray-200 rounded-sm">
               <TabsTrigger
@@ -117,7 +117,7 @@ export function CreatePostPage({
               </TabsTrigger>
             </TabsList>
           </Tabs>
-          <ToggleGroupCustom setText={setText} />
+          <ToggleGroupCustom className="w-full" setText={setText} />
         </div>
 
         <TextareaWithText
@@ -149,12 +149,16 @@ export function CreatePostPage({
 
         <div className="flex flex-row gap-4 items-center">
           {loading ? (
-            <Button type="submit" disabled>
+            <Button type="submit" disabled className="w-full sm:w-fit">
               {" "}
               <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submit
             </Button>
           ) : (
-            <Button onClick={handleSubmit} type="submit">
+            <Button
+              onClick={handleSubmit}
+              type="submit"
+              className="w-full sm:w-fit"
+            >
               Submit
             </Button>
           )}

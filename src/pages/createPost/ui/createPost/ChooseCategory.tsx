@@ -55,7 +55,7 @@ export function ChooseCategory() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-full sm:w-[200px] justify-between"
           disabled
         >
           {value

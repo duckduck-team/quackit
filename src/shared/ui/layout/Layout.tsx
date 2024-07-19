@@ -59,7 +59,7 @@ export function Layout({ children }: LayoutProps) {
             </div>
           )}
         </header>
-        <main className="flex justify-between px-4 sm:px-8 pb-4">
+        <main className="flex justify-between px-2 sm:px-8 pb-4">
           <Sidebar />
           {children}
           <PopularAuthors />
