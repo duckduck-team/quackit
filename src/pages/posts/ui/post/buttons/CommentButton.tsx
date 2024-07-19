@@ -3,9 +3,9 @@ import { MessageSquareIcon } from "lucide-react";
 
 export function CommentButton() {
   return (
-    <PostButton className="w-fit flex p-2 px-3 gap-2 bg-secondary font-medium text-sm text-primary/75 rounded-md">
+    <PostButton className="w-fit flex p-2 px-3 h-full gap-2 bg-secondary font-medium text-sm text-primary/75 rounded-md">
       <MessageSquareIcon strokeWidth={3} size={16} />
-      Comment
+      <span className="hidden invisible sm:block sm:visible">Comment</span>
     </PostButton>
   );
 }
