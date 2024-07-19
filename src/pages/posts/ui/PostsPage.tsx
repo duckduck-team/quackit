@@ -60,7 +60,7 @@ export function PostsPage({ user_id }: { user_id: number }) {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="flex flex-col bg-secondary p-4 w-content gap-4">
+    <div className="flex flex-col bg-secondary w-full sm:p-4 sm:w-content gap-4">
       {user_id ? (
         <CreatePostPage className="p-0 w-full" user_id={user_id} />
       ) : null}
