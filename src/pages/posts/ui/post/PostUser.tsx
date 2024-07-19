@@ -1,7 +1,13 @@
+"use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/shared/ui/tooltip";
 dayjs.extend(relativeTime);
 interface PostUserProps {
   user_id: number;
@@ -9,16 +15,26 @@ interface PostUserProps {
   published_at: string;
 }
 export function PostUser({ user_id, username, published_at }: PostUserProps) {
+  const date = dayjs(published_at).add(3, "hour");
   return (
-    <div className="flex gap-4 items-center">
-      <Avatar className="w-8 h-8">
-        <AvatarImage src={`https://github.com/${username}.png`} />
-        <AvatarFallback>DA</AvatarFallback>
-      </Avatar>
-      <span className="text-sm font-semibold">@{username}</span>
-      <span className="text-sm opacity-75 font-semibold">
-        {dayjs(published_at).fromNow()}
-      </span>
-    </div>
+    <TooltipProvider delayDuration={200}>
+      <div className="flex gap-4 items-center">
+        <Avatar className="w-8 h-8">
+          <AvatarImage src={`https://github.com/${username}.png`} />
+          <AvatarFallback>DA</AvatarFallback>
+        </Avatar>
+        <span className="text-sm font-semibold">@{username}</span>
+        <Tooltip>
+          <TooltipTrigger className="text-sm">
+            <span className="text-sm opacity-75 font-semibold">
+              {date.fromNow()}
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{date.format("YYYY-MM-DD HH:mm")}</p>
+          </TooltipContent>
+        </Tooltip>
+      </div>
+    </TooltipProvider>
   );
 }
