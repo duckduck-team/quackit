@@ -63,7 +63,6 @@ export function CreatePostPage({
   async function handleSubmit() {
     setLoading(true);
     const result = await createPost(title, text, "");
-    console.log(result);
     if (result) router.push("/posts");
     else {
       setError("Something went wrong. Try again.");
@@ -125,6 +124,7 @@ export function CreatePostPage({
             variant={"outline"}
             className="gap-2 text-sm"
             onClick={handleUploadClick}
+            disabled
           >
             <Image size={16} strokeWidth={2} /> Upload photo
           </Button>

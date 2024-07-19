@@ -14,6 +14,12 @@ import {
 } from "@/shared/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";
 import { CommandList } from "cmdk";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/shared/ui/tooltip";
 
 const frameworks = [
   {
@@ -50,6 +56,7 @@ export function ChooseCategory() {
           role="combobox"
           aria-expanded={open}
           className="w-[200px] justify-between"
+          disabled
         >
           {value
             ? frameworks.find((framework) => framework.value === value)?.label
