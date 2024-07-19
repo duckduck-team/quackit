@@ -3,6 +3,7 @@
 import { Bold, Italic, Underline } from "lucide-react";
 import { ToggleGroup, ToggleGroupItem } from "@/shared/ui/toggle-group";
 import React, { useState } from "react";
+import { Button } from "@/shared/ui/button";
 
 export function ToggleGroupCustom(props: { setText: (text: string) => void }) {
   const [selectedFormats, setSelectedFormats] = useState<string[]>([]);
@@ -50,29 +51,32 @@ export function ToggleGroupCustom(props: { setText: (text: string) => void }) {
     <ToggleGroup
       size={"sm"}
       type="multiple"
-      className="border border-gray-200 rounded-sm gap-2 px-2"
+      className="border border-gray-200 rounded-sm"
     >
-      <ToggleGroupItem
+      <Button
+        variant="ghost"
         value="bold"
         aria-label="Toggle bold"
         onClick={() => handleToggle("bold")}
       >
         <Bold className="h-4 w-4" />
-      </ToggleGroupItem>
-      <ToggleGroupItem
+      </Button>
+      <Button
+        variant="ghost"
         value="italic"
         aria-label="Toggle italic"
         onClick={() => handleToggle("italic")}
       >
         <Italic className="h-4 w-4" />
-      </ToggleGroupItem>
-      <ToggleGroupItem
+      </Button>
+      <Button
+        variant="ghost"
         value="underline"
         aria-label="Toggle underline"
         onClick={() => handleToggle("underline")}
       >
         <Underline className="h-4 w-4" />
-      </ToggleGroupItem>
+      </Button>
     </ToggleGroup>
   );
 }
