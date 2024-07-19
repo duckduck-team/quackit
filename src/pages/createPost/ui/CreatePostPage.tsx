@@ -15,8 +15,15 @@ import { redirect } from "next/navigation";
 import { Image, Loader2 } from "lucide-react";
 import { createPost } from "@/pages/createPost/lib/createPost";
 import { useRouter } from "next/navigation";
+import { cn } from "@/shared/lib/utils";
 
-export function CreatePostPage({ user_id }: { user_id: number }) {
+export function CreatePostPage({
+  user_id,
+  className,
+}: {
+  user_id: number;
+  className?: string;
+}) {
   const [isEditMode, setIsEditMode] = useState(true);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
@@ -59,13 +66,18 @@ export function CreatePostPage({ user_id }: { user_id: number }) {
     console.log(result);
     if (result) router.push("/posts");
     else {
-      setError(error);
+      setError("Something went wrong. Try again.");
       setLoading(false);
     }
   }
 
   return (
-    <div className="flex flex-col bg-secondary p-4 w-content gap-4">
+    <div
+      className={cn(
+        "flex flex-col bg-secondary p-4 w-content gap-4",
+        className,
+      )}
+    >
       <Card className="flex flex-col w-full bg-background p-4 gap-4">
         <UserData user_id={postUser.user_id} username={postUser.username} />
         <div className="flex flex-row gap-4 justify-between">
@@ -138,7 +150,7 @@ export function CreatePostPage({ user_id }: { user_id: number }) {
               Submit
             </Button>
           )}
-          {error ? <p>{error}</p> : null}
+          {error ? <p className="text-sm text-red-600">{error}</p> : null}
         </div>
       </Card>
     </div>

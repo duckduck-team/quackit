@@ -7,5 +7,5 @@ export const metadata: Metadata = {
     "Discuss with the community latest news and share your opinion with others.",
 };
 export default function Posts() {
-  return <PostsPage />;
+  return <PostsPage user_id={1} />;
 }
