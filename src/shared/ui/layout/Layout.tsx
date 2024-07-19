@@ -14,14 +14,19 @@ export function Layout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="flex h-header px-8 py-4 justify-between items-center">
-          <span className="text-2xl font-semibold">Quackit</span>
-          <Input placeholder="Search Quackit..." className="w-content" />
+        <header className="flex gap-2 h-header px-2 sm:px-8 py-2 sm:justify-between items-center">
+          <span className="hidden sm:visible text-2xl font-semibold">
+            Quackit
+          </span>
+          <Input
+            placeholder="Search Quackit..."
+            className="w-full sm:w-content"
+          />
           <Button>
             <LogInIcon className="mr-2 h-4 w-4" /> Login
           </Button>
         </header>
-        <main className="flex justify-between px-8 pb-4">
+        <main className="flex justify-between px-4 sm:px-8 pb-4">
           <Sidebar />
           {children}
           <PopularAuthors />
