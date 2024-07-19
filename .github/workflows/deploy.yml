@@ -2,6 +2,9 @@ name: Deploy to testing server
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   pre-deploy:
