@@ -6,5 +6,5 @@ export const metadata: Metadata = {
   description: "Share your news with the community in a few seconds.",
 };
 export default function Posts() {
-  return <CreatePostPage />;
+  return <CreatePostPage user_id={1} />;
 }
