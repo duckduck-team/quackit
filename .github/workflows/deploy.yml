@@ -10,6 +10,8 @@ jobs:
   pre-deploy:
     name: Run CI pipeline before deploy
     runs-on: ubuntu-latest
+    concurrency:
+      group: ci
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -58,6 +60,8 @@ jobs:
   deploy:
     name: Deploy to testing server
     runs-on: self-hosted
+    concurrency:
+      group: cd
     environment:
       name: prod
       url: https://quackit.dminc.ru
