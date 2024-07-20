@@ -14,17 +14,23 @@ import {
 } from "@/shared/ui/form"
 import { Input } from "@/shared/ui/input"
 import Link from "next/link"
+import { login } from "../lib/login"
+import { useRouter } from "next/navigation"
+import { Credentials } from "../lib/interfaces"
+
 
 const formSchema = z.object({
     username: z.string().min(2, {
       message: "Username must be at least 2 characters.",
     }),
-    password: z.string().min(8, {
-      message: "Password must be at least 8 characters.",
+    password: z.string().min(4, {
+      message: "Password must be at least 4 characters.",
     }),
 })
 
 export function LoginPage() {
+    const router = useRouter();
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -33,9 +39,16 @@ export function LoginPage() {
         },
     })
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        const token = await login(values as Credentials);
+        if (token) {
+            localStorage.setItem('access_token', token.access_token);
+            router.push('/posts');
+        } else {
+            router.push('/auth');
+        }
     }
+          
 
     return (
         <div className="p-6 h-fit rounded-lg border-solid border-2 border-[E4E4E7]">

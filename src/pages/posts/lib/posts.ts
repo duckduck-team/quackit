@@ -1,3 +1,5 @@
+import { Token } from "@/pages/register/lib/interfaces";
+
 export interface PostInDB extends Response {
   title: string;
   content: string;
@@ -21,10 +23,6 @@ export interface AvailableTags<TagInDB> {
   [tags: string]: TagInDB[];
 }
 
-interface Token extends Response {
-  access_token: string;
-  token_type: string;
-}
 
 export async function fetchPost(post_id: number) {
   return await fetch(
