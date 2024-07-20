@@ -19,6 +19,21 @@ export interface AvailablePosts<PostInDB> {
 export interface AvailableTags<TagInDB> {
   [tags: string]: TagInDB[];
 }
+
+export interface CommentInDB extends Response {
+  content: string;
+  parent_comment_id: number | null;
+  post_id: number;
+  user_id: number;
+  comment_id: number;
+  votes_count: number;
+  published_at: string;
+}
+
+export interface AvailableComments<CommentInDB> {
+  [comments: string]: CommentInDB[];
+}
+
 export async function fetchPost(post_id: number) {
   return await fetch(
     `${process.env.NEXT_PUBLIC_API_HOST}/unauthorized/post/${post_id}`,
@@ -111,4 +126,13 @@ export async function voteAgainstPost(post_id: number) {
       console.log("Error occurred while trying to vote", e);
       return null;
     });
+}
+
+export async function fetchComments(post_id: number): Promise<AvailableComments<CommentInDB>> {
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_API_HOST}/unauthorized/post/${post_id}/all_comments`,
+    { cache: "no-store" },
+  ).then((r) => {
+    return r.json();
+  });
 }

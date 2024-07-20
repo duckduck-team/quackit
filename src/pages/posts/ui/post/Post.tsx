@@ -3,13 +3,13 @@ import { MoreHorizontalIcon } from "lucide-react";
 import { Card, CardContent, CardTitle } from "@/shared/ui/card";
 import { PostUser } from "@/pages/posts/ui/post/PostUser";
 import { PostContent } from "@/pages/posts/ui/post/PostContent";
-import { VoteButton } from "@/pages/posts/ui/post/buttons/VoteButton";
-import { CommentButton } from "@/pages/posts/ui/post/buttons/CommentButton";
-import { ShareButton } from "@/pages/posts/ui/post/buttons/ShareButton";
-import { ReportButton } from "@/pages/posts/ui/post/buttons/ReportButton";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { fetchUser } from "@/pages/posts/lib/users";
+import { VoteButton } from "./buttons/VoteButton";
+import { CommentButton } from "./buttons/CommentButton";
+import { ShareButton } from "./buttons/ShareButton";
+import { ReportButton } from "./buttons/ReportButton";
 
 export interface PostProps {
   title: string;
