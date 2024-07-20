@@ -1,3 +1,4 @@
+import Link from "next/link";
 interface PostContentProps {
   title: string;
   content: string;
@@ -14,7 +15,9 @@ export function PostContent({ title, content, post_id }: PostContentProps) {
   }
   return (
     <>
-      <h1 className="text-base font-semibold">{title}</h1>
+      <Link href={`/posts/${post_id}`}>
+        <h1 className="text-base font-semibold">{title}</h1>
+      </Link>
       <div className="w-full h-fit font-normal text-sm">
         {parseContent(content)}
       </div>
