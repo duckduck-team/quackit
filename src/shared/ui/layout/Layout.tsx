@@ -40,7 +40,7 @@ export function Layout({ children }: LayoutProps) {
     <html lang="en">
       <body className={inter.className}>
         <header className="flex gap-2 h-header px-2 sm:px-8 py-2 sm:justify-between items-center">
-          <span className="hidden sm:visible text-2xl font-semibold">Quackit</span>
+          <span className="hidden invisible sm:block sm:visible text-2xl font-semibold">Quackit</span>
           <Input placeholder="Search Quackit..." className="w-full sm:w-content" />
           {user === null ? (
             <Link href={`/auth/login`}>
