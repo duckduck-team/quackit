@@ -1,4 +1,4 @@
-import { Credentials, Token } from "./interfaces";
+import { Token } from "./interfaces";
 
 export async function get_token(username: string, password: string) {
     return await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/user/token`, {
