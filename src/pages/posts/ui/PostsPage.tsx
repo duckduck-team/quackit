@@ -60,7 +60,7 @@ export function PostsPage({ user_id }: { user_id: number }) {
       ) : null}
       <div className="flex flex-wrap gap-2">
         {tags.map((tag: TagInDB) => (
-          <Tag key={`tag-${tag}`} callback={filterPosts} tag={tag.tag} />
+          <Tag key={`tag-${tag.tag_id}`} callback={filterPosts} tag={tag.tag} />
         ))}
       </div>
       {posts.map((post: PostInDB) => (

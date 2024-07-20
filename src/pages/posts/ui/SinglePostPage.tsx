@@ -1,13 +1,20 @@
 import { PostWithComments } from "@/pages/posts/ui/post/PostWithComments";
 import Head from "next/head";
 import { fetchPost } from "@/pages/posts/lib/posts";
+import { fetchComments } from "@/pages/posts/lib/posts";
 
 async function getPost(post_id: number) {
   return await fetchPost(post_id);
 }
 
+async function getComments(post_id: number) {
+  console.log(fetchComments(post_id));
+  return await fetchComments(post_id);
+}
+
 export async function SinglePostPage({ post_id }: { post_id: number }) {
   const postData = await getPost(post_id);
+  const commentData = await getComments(post_id);
 
   if (postData) {
     return (
@@ -25,6 +32,7 @@ export async function SinglePostPage({ post_id }: { post_id: number }) {
           title={postData.title}
           user_id={postData.user_id}
           votes_count={postData.votes_count}
+          comments={commentData.comments}
         />
       </div>
     );

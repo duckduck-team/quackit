@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { Input } from "@/shared/ui/input";
 import { Button } from "@/shared/ui/button";
@@ -11,6 +11,7 @@ import { current_user } from "@/pages/register/lib/login";
 import { useEffect, useState } from "react";
 import { UserInDB } from "@/pages/posts/lib/users";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 interface LayoutProps {
@@ -20,19 +21,19 @@ export function Layout({ children }: LayoutProps) {
   const [user, setUser] = useState<UserInDB | null>(null);
 
   useEffect(() => {
-    async function fetch_user() {
-      const token = localStorage.getItem("access_token");
+    async function fetch_user(){
+      const token = localStorage.getItem('access_token');
       if (token) {
         const user = await current_user(token);
         setUser(user);
       }
     }
 
-    fetch_user();
+    fetch_user()
   }, []);
 
   function logout() {
-    localStorage.removeItem("access_token");
+    localStorage.removeItem('access_token');
     window.location.reload();
   }
 
@@ -48,16 +49,17 @@ export function Layout({ children }: LayoutProps) {
                 <LogInIcon className="mr-2 h-4 w-4" /> Login
               </Button>
             </Link>
-          ) : (
-            <div className="flex gap-4">
+          ):
+            <div className="flex gap-4 ml-4">
               <Button>
-                <User className="mr-2 h-4 w-4" /> {user.username}
+                <User className="mr-2 h-4 w-4"/> {user.username}
               </Button>
               <Button onClick={logout}>
                 <LogOut className="mr-2 h-4 w-4" /> Logout
               </Button>
             </div>
-          )}
+          }
+
         </header>
         <main className="flex justify-between px-8 pb-4">
           <Sidebar />
