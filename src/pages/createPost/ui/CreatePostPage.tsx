@@ -80,10 +80,7 @@ export function CreatePostPage({
     <></>
   ) : (
     <div
-      className={cn(
-        "flex flex-col bg-secondary p-4 sm:w-content gap-4",
-        className,
-      )}
+      className={cn("flex flex-col bg-secondary p-4 w-full gap-4", className)}
     >
       <Card className="flex flex-col w-full bg-background p-4 gap-4">
         <UserData user_id={postUser.user_id} username={postUser.username} />
