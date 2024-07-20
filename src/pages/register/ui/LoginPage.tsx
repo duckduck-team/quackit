@@ -49,7 +49,6 @@ export function LoginPage() {
         }
     }
 
-
     return (
         <div className="p-6 h-fit rounded-lg border-solid border-2 border-[E4E4E7]">
             <span className="inline-block mb-[22px] text-xl font-semibold">Authorize</span>
