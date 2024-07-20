@@ -79,8 +79,8 @@ export async function fetchPostsByTag(
 }
 
 export async function voteForPost(post_id: number) {
-  const token = localStorage.getItem('access_token');
-  console.log(token, post_id)
+  const token = localStorage.getItem("access_token");
+  console.log(token, post_id);
   if (!token) return null;
   return await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/vote/vote_for_post`, {
     method: "POST",
@@ -104,19 +104,22 @@ export async function voteForPost(post_id: number) {
 }
 
 export async function voteAgainstPost(post_id: number) {
-  const token = localStorage.getItem('access_token');
-  console.log(token, post_id)
+  const token = localStorage.getItem("access_token");
+  console.log(token, post_id);
   if (!token) return null;
-  return await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/vote/vote_against_post`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_API_HOST}/vote/vote_against_post`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        post_id: post_id,
+      }),
     },
-    body: JSON.stringify({
-      post_id: post_id,
-    }),
-  })
+  )
     .then((r) => {
       if (r.status != 200) return null;
       return r.json();
@@ -128,7 +131,9 @@ export async function voteAgainstPost(post_id: number) {
     });
 }
 
-export async function fetchComments(post_id: number): Promise<AvailableComments<CommentInDB>> {
+export async function fetchComments(
+  post_id: number,
+): Promise<AvailableComments<CommentInDB>> {
   return await fetch(
     `${process.env.NEXT_PUBLIC_API_HOST}/unauthorized/post/${post_id}/all_comments`,
     { cache: "no-store" },

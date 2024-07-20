@@ -3,7 +3,6 @@ import { PostButton } from "@/pages/posts/ui/post/buttons/PostButton";
 import { ChevronsDownIcon, ChevronsUpIcon } from "lucide-react";
 import { useState } from "react";
 
-
 interface VoteButtonProps {
   comment_id: number;
   votes_count: number;

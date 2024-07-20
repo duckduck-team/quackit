@@ -46,7 +46,7 @@ export function CreatePostPage({
 
   useEffect(() => {
     async function getUser() {
-      const token = localStorage.getItem('access_token');
+      const token = localStorage.getItem("access_token");
       if (token) {
         const user = await current_user(token);
         if (user) {
@@ -64,7 +64,11 @@ export function CreatePostPage({
 
   async function handleSubmit() {
     setLoading(true);
-    const result = await createPost(title, text, localStorage.getItem('access_token'));
+    const result = await createPost(
+      title,
+      text,
+      localStorage.getItem("access_token"),
+    );
     if (result) router.push("/posts");
     else {
       setError("Something went wrong. Try again.");
@@ -72,9 +76,9 @@ export function CreatePostPage({
     setLoading(false);
   }
 
-  return postUser.username === "" 
-    ? <></>
-    : (
+  return postUser.username === "" ? (
+    <></>
+  ) : (
     <div
       className={cn(
         "flex flex-col bg-secondary p-4 w-content gap-4",

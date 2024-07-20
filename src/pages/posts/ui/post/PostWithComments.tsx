@@ -4,7 +4,6 @@ import { Button } from "@/shared/ui/button";
 import { CommentInDB } from "../../lib/posts";
 import { Comment } from "@/pages/comments/ui/Comment";
 
-
 export interface PostWithCommentsProps {
   title: string;
   content: string;
@@ -26,7 +25,7 @@ export function PostWithComments(props: PostWithCommentsProps) {
       </div>
       {props.comments.map((comment: CommentInDB) => (
         <Comment
-          key={comment.published_at} 
+          key={comment.published_at}
           comment_id={comment.comment_id}
           user_id={comment.user_id}
           post_id={comment.post_id}
