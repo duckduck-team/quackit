@@ -61,7 +61,7 @@ export function RegisterPage() {
             localStorage.setItem('access_token', token.access_token);
             router.push('/posts');
         } else {
-            router.push('/auth');
+            router.push('/auth/login');
         }
     }
 

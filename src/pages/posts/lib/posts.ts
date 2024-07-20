@@ -63,31 +63,39 @@ export async function fetchPostsByTag(
   });
 }
 
-async function dummyAuth() {
-  return await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/user/token`, {
+export async function voteForPost(post_id: number) {
+  const token = localStorage.getItem('access_token');
+  console.log(token, post_id)
+  if (!token) return null;
+  return await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/vote/vote_for_post`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
-    body: new URLSearchParams({ username: "demo", password: "123456" }),
+    body: JSON.stringify({
+      post_id: post_id,
+    }),
   })
     .then((r) => {
       if (r.status != 200) return null;
       return r.json();
     })
-    .then((token: Token) => token)
+    .then((post: PostInDB) => post)
     .catch((e) => {
-      console.log("Error occurred while trying to authorize", e);
+      console.log("Error occurred while trying to vote", e);
       return null;
     });
 }
-export async function votePost(post_id: number) {
-  const token = await dummyAuth();
+
+export async function voteAgainstPost(post_id: number) {
+  const token = localStorage.getItem('access_token');
+  console.log(token, post_id)
   if (!token) return null;
-  return await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/post/vote`, {
+  return await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/vote/vote_against_post`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token.access_token}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
