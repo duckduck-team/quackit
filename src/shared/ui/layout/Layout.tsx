@@ -29,7 +29,7 @@ export function Layout({ children }: LayoutProps) {
       }
     }
 
-    fetch_user()  
+    fetch_user()
   }, []);
 
   function logout() {
@@ -60,7 +60,7 @@ export function Layout({ children }: LayoutProps) {
             </div>
 
           }
-          
+
         </header>
         <main className="flex justify-between px-8 pb-4">
           <Sidebar />

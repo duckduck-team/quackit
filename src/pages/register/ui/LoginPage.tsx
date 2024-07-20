@@ -48,7 +48,7 @@ export function LoginPage() {
             router.push('/auth');
         }
     }
-          
+
 
     return (
         <div className="p-6 h-fit rounded-lg border-solid border-2 border-[E4E4E7]">
