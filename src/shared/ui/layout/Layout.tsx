@@ -40,8 +40,13 @@ export function Layout({ children }: LayoutProps) {
     <html lang="en">
       <body className={inter.className}>
         <header className="flex gap-2 h-header px-2 sm:px-8 py-2 sm:justify-between items-center">
-          <span className="hidden invisible sm:block sm:visible text-2xl font-semibold">Quackit</span>
-          <Input placeholder="Search Quackit..." className="w-full sm:w-content" />
+          <span className="hidden invisible sm:block sm:visible text-2xl font-semibold">
+            Quackit
+          </span>
+          <Input
+            placeholder="Search Quackit..."
+            className="w-full sm:w-content"
+          />
           {user === null ? (
             <Link href={`/auth/login`}>
               <Button>
@@ -50,7 +55,7 @@ export function Layout({ children }: LayoutProps) {
             </Link>
           ) : (
             <div className="flex gap-4 ml-4">
-              <Button>
+              <Button className="hidden invisible sm:block sm:visible">
                 <User className="mr-2 h-4 w-4" /> {user.username}
               </Button>
               <Button onClick={logout}>
