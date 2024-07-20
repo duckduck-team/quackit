@@ -1,5 +1,4 @@
 "use client";
-
 import { Card } from "@/shared/ui/card";
 import { Input } from "@/shared/ui/input";
 import { UserData } from "@/pages/createPost/ui/createPost/UserData";

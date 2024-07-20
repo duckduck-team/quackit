@@ -17,13 +17,11 @@ export function PostsPage({ user_id }: { user_id: number }) {
   const [tags, setTags] = useState<TagInDB[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
   useEffect(() => {
     async function getPosts() {
       try {
         const postsData: AvailablePosts<PostInDB> = await fetchPosts();
         const posts: PostInDB[] = postsData["posts"];
-
         if (posts.length > 0) {
           setPosts(posts);
         } else {
@@ -35,13 +33,11 @@ export function PostsPage({ user_id }: { user_id: number }) {
     }
     getPosts();
   }, []);
-
   useEffect(() => {
     async function getTags() {
       try {
         const tagsData: AvailableTags<TagInDB> = await fetchTags();
         const tags: TagInDB[] = tagsData["tags"];
-
         if (tags.length > 0) {
           setTags(tags);
         }
@@ -51,11 +47,9 @@ export function PostsPage({ user_id }: { user_id: number }) {
     }
     getTags();
   }, []);
-
   const filterPosts = (new_posts: PostInDB[]) => {
     setPosts(new_posts);
   };
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 

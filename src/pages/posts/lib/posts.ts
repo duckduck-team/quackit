@@ -1,5 +1,4 @@
 import { Token } from "@/pages/register/lib/interfaces";
-
 export interface PostInDB extends Response {
   title: string;
   content: string;
@@ -9,21 +8,16 @@ export interface PostInDB extends Response {
   published_at: string;
   detail?: string;
 }
-
 export interface TagInDB extends Response {
   tag_id: number;
   tag: string;
 }
-
 export interface AvailablePosts<PostInDB> {
   [posts: string]: PostInDB[];
 }
-
 export interface AvailableTags<TagInDB> {
   [tags: string]: TagInDB[];
 }
-
-
 export async function fetchPost(post_id: number) {
   return await fetch(
     `${process.env.NEXT_PUBLIC_API_HOST}/unauthorized/post/${post_id}`,
@@ -39,7 +33,6 @@ export async function fetchPost(post_id: number) {
       return null;
     });
 }
-
 export async function fetchPosts(): Promise<AvailablePosts<PostInDB>> {
   return await fetch(
     `${process.env.NEXT_PUBLIC_API_HOST}/unauthorized/postlist_all`,
@@ -87,7 +80,6 @@ async function dummyAuth() {
       return null;
     });
 }
-
 export async function votePost(post_id: number) {
   const token = await dummyAuth();
   if (!token) return null;
