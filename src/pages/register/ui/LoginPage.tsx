@@ -16,7 +16,7 @@ import { Input } from "@/shared/ui/input"
 import Link from "next/link"
 import { login } from "../lib/login"
 import { useRouter } from "next/navigation"
-import { Credentials } from "../lib/interfaces"
+import { CredentialsForLogin } from "../lib/interfaces"
 
 
 const formSchema = z.object({
@@ -40,7 +40,7 @@ export function LoginPage() {
     })
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        const token = await login(values as Credentials);
+        const token = await login(values as CredentialsForLogin);
         if (token) {
             localStorage.setItem('access_token', token.access_token);
             router.push('/posts');
