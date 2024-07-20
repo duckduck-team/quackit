@@ -55,7 +55,7 @@ export function Layout({ children }: LayoutProps) {
             </Link>
           ) : (
             <div className="flex gap-4 ml-4">
-              <Button className="hidden invisible sm:block sm:visible">
+              <Button className="hidden invisible sm:flex sm:visible">
                 <User className="mr-2 h-4 w-4" /> {user.username}
               </Button>
               <Button onClick={logout}>

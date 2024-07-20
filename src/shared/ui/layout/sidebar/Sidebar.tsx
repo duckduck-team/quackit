@@ -9,8 +9,8 @@ export function Sidebar() {
       <div className="flex flex-col gap-2.5">
         <AccountBar />
         <Separator className="h-0.5 w-[23rem]" />
-        <TopicsBar />
-        <Separator className="h-0.5 w-[23rem]" />
+        {/*<TopicsBar />*/}
+        {/*<Separator className="h-0.5 w-[23rem]" />*/}
       </div>
       <div className="flex flex-col gap-2.5">
         <Separator className="h-0.5 w-[23rem]" />
