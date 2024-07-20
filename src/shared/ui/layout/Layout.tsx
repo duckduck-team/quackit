@@ -50,7 +50,7 @@ export function Layout({ children }: LayoutProps) {
               </Button>
             </Link>
           ):
-            <div className="flex gap-4">
+            <div className="flex gap-4 ml-4">
               <Button>
                 <User className="mr-2 h-4 w-4"/> {user.username}
               </Button>
@@ -58,7 +58,6 @@ export function Layout({ children }: LayoutProps) {
                 <LogOut className="mr-2 h-4 w-4" /> Logout
               </Button>
             </div>
-
           }
 
         </header>
