@@ -14,6 +14,7 @@ import {
 } from "@/shared/ui/form"
 import { Input } from "@/shared/ui/input"
 import Link from "next/link"
+import { login } from "../lib/login"
 
 const formSchema = z.object({
     username: z.string().min(2, {
@@ -45,7 +46,7 @@ export function RegisterPage() {
     })
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
+        // e.preventDefault();
     }
 
     return (
