@@ -14,7 +14,9 @@ import {
 } from "@/shared/ui/form"
 import { Input } from "@/shared/ui/input"
 import Link from "next/link"
-import { login } from "../lib/login"
+import { register } from "../lib/register"
+import { CredentialsForRegister } from "../lib/interfaces"
+import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
     username: z.string().min(2, {
@@ -35,6 +37,8 @@ const formSchema = z.object({
   });
 
 export function RegisterPage() {
+    const router = useRouter();
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -46,7 +50,19 @@ export function RegisterPage() {
     })
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        // e.preventDefault();
+        const credentials = {
+            username: values.username,
+            password: values.password,
+            email: values.email,
+        } as CredentialsForRegister;
+
+        const token = await register(credentials);
+        if (token) {
+            localStorage.setItem('access_token', token.access_token);
+            router.push('/posts');
+        } else {
+            router.push('/auth');
+        }
     }
 
     return (

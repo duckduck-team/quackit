@@ -7,7 +7,6 @@ import { Sidebar } from "@/shared/ui/layout/sidebar/Sidebar";
 import { PopularAuthors } from "@/shared/ui/layout/popular-authors/PopularAuthors";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-import { Card } from "../card";
 import { current_user } from "@/pages/register/lib/login";
 import { useEffect, useState } from "react";
 import { UserInDB } from "@/pages/posts/lib/users";
@@ -30,8 +29,7 @@ export function Layout({ children }: LayoutProps) {
       }
     }
 
-    fetch_user()
-          
+    fetch_user()  
   }, []);
 
   function logout() {

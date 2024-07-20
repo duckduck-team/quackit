@@ -1,8 +1,8 @@
 import { UserInDB } from "@/pages/posts/lib/users";
-import { Credentials } from "./interfaces";
+import { CredentialsForLogin } from "./interfaces";
 import { get_token } from "./token";
 
-export async function login({ username, password }: Credentials) {
+export async function login({ username, password }: CredentialsForLogin) {
     const token = await get_token(username, password);
     return token;
 }
