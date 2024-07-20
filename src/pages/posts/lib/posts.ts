@@ -8,6 +8,7 @@ export interface PostInDB extends Response {
   published_at: string;
   detail?: string;
 }
+
 export interface TagInDB extends Response {
   tag_id: number;
   tag: string;
