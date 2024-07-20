@@ -1,4 +1,4 @@
-import { UserInDB } from "@/pages/posts/lib/users";
+import { UserInDB } from '@/pages/posts/lib/users';
 import { CredentialsForLogin } from "./interfaces";
 import { get_token } from "./token";
 

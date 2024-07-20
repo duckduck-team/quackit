@@ -3,7 +3,7 @@ import { PostInDB } from "@/pages/posts/lib/posts";
 export async function createPost(
   title: string,
   content: string,
-  token: string,
+  token: string | null,
 ) {
   return await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/post/create`, {
     method: "POST",
