@@ -1,8 +1,12 @@
+"use client"
 import { Post } from "@/pages/posts/ui/post/Post";
 import { Textarea } from "@/shared/ui/textarea";
 import { Button } from "@/shared/ui/button";
-import { CommentInDB } from "../../lib/posts";
+import { CommentInDB, createComment } from "../../lib/posts";
 import { Comment } from "@/pages/comments/ui/Comment";
+import { current_user } from "@/pages/register/lib/login";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export interface PostWithCommentsProps {
   title: string;
@@ -15,13 +19,41 @@ export interface PostWithCommentsProps {
   children?: React.ReactNode;
 }
 export function PostWithComments(props: PostWithCommentsProps) {
-  const text =
-    "There will be comment submission form. Use Form instead of TextArea.";
+  const router = useRouter();
+  const [content, setContent] = useState("");
+  const [commentUser, setCommentUser] = useState({
+    username: "",
+    user_id: -1,
+  });
+
+  useEffect(() => {
+    async function getUser() {
+      const token = localStorage.getItem('access_token');
+      if (token) {
+        const user = await current_user(token);
+        if (user) {
+          setCommentUser(user);
+        } else {
+          router.push("/login");
+        }
+      }
+    }
+
+    getUser();
+  }, []);
+
+  async function handleSubmit() {
+    const result = await createComment(content, null, props.post_id, localStorage.getItem('access_token'));
+    if (result) router.push(`/posts/${props.post_id}`);
+  }
+
   return (
     <Post {...props}>
       <div className="flex flex-col gap-4 p-4 border rounded-md">
-        <Textarea placeholder={text} />
-        <Button className="w-fit">Publish comment</Button>
+        <form onSubmit={handleSubmit}>
+          <Textarea onChange={(e) => setContent(e.target.value)} placeholder="Some text" name="comment" />
+          <Button className="w-fit" type="submit">Publish comment</Button>
+        </form>
       </div>
       {props.comments.map((comment: CommentInDB) => (
         <Comment

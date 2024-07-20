@@ -113,6 +113,7 @@ export function RegisterPage() {
                 <FormControl>
                   <Input
                     className="text-xs min-w-[250px]"
+                    type="text"
                     placeholder="alreadituser"
                     {...field}
                   />

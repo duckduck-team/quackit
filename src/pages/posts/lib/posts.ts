@@ -141,3 +141,32 @@ export async function fetchComments(
     return r.json();
   });
 }
+
+export async function createComment(
+  content: string, 
+  parent_comment_id: number | null, 
+  post_id: number,
+  token: string | null,
+) {
+  return await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/comment/create`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      content: content,
+      parent_comment_id: parent_comment_id,
+      post_id: post_id,
+    }),
+  })
+    .then((r) => {
+      if (r.status != 200) return null;
+      return r.json();
+    })
+    .then((post: PostInDB) => post)
+    .catch((e) => {
+      console.log("Error occurred while trying to create comment", e);
+      return null;
+  });
+}
